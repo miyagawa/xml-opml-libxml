@@ -52,13 +52,13 @@ XML::OPML::LibXML - Parse OPML document with LibXML parser
   for my $outline (@outline) {
       $outline->title;
       $outline->text;
-      $outline->type;
-      $outline->xml_url;
-      $outline->html_url;
-  
       if ($outline->is_container) {
           my @outline = $outline->children;
           # do some recursive stuff
+      } else {
+          $outline->type;
+          $outline->xml_url;
+          $outline->html_url;
       }
   }
 
@@ -67,7 +67,8 @@ XML::OPML::LibXML - Parse OPML document with LibXML parser
 XML::OPML::LibXML is an OPML parser written using XML::LibXML. This
 module is part of spin-off CPANization of Plagger plugins.
 
-For now, all this module does is parsing OPML document.
+For now, all this module does is just parsing an OPML document. The
+API is very simple and limited to low-level access, yet.
 
 =head1 AUTHOR
 
