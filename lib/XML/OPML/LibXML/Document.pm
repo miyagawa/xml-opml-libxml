@@ -1,7 +1,6 @@
 package XML::OPML::LibXML::Document;
 use strict;
 use warnings;
-use Carp;
 use XML::OPML::LibXML::Outline;
 
 our $AUTOLOAD;
