@@ -1,7 +1,7 @@
 package XML::OPML::LibXML;
 
 use strict;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use XML::LibXML;
 use XML::OPML::LibXML::Document;
