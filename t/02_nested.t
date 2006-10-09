@@ -17,6 +17,11 @@ plan 'no_plan';
     @children = $children[0]->children;
     is $children[0]->title, 'blog.bulknews.net';
     is $children[0]->html_url, 'http://blog.bulknews.net/mt/';
+
+    my @title;
+    $doc->walkdown(sub { push @title, $_[0]->title });
+
+    is_deeply \@title, [ qw( Subscriptions Foo blog.bulknews.net Bar Baz Bulknews::Subtech ) ];
 }
 
 

@@ -54,7 +54,7 @@ sub _walk {
     $cb->($outline);
 
     if ($outline->is_container) {
-        for my $child ($outline->getChildrenByTagName('outline')) {
+        for my $child ($outline->{elem}->getChildrenByLocalName('outline')) {
             $self->_walk($child, $cb);
         }
     }
