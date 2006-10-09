@@ -31,6 +31,35 @@ sub outline {
     return wantarray ? @outline : \@outline;
 }
 
+sub walkdown {
+    my $self = shift;
+    my($cb)  = @_;
+
+    my $body = first_node($self->{doc}, 'body') or return;
+    my @outline = $body->getChildrenByTagName('outline');
+
+    # eval so callback can die to return immediately
+    eval {
+        for my $node (@outline) {
+            $self->_walk($node, $cb);
+        }
+    };
+}
+
+sub _walk {
+    my($self, $node, $cb) = @_;
+
+    # some duplicated code to save memory
+    my $outline = XML::OPML::LibXML::Outline->new_from_elem($node);
+    $cb->($outline);
+
+    if ($outline->is_container) {
+        for my $child ($outline->getChildrenByTagName('outline')) {
+            $self->_walk($child, $cb);
+        }
+    }
+}
+
 sub AUTOLOAD {
     my $self = shift;
     (my $elem = $AUTOLOAD) =~ s/.*:://;
