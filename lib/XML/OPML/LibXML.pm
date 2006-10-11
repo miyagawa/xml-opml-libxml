@@ -50,6 +50,7 @@ XML::OPML::LibXML - Parse OPML document with LibXML parser
   # XML::OPML::LibXML::Outline
   my @outline = $doc->outline;
   for my $outline (@outline) {
+      my $attrs = $attr->attrs;      # hashref
       $outline->title;
       $outline->text;
       if ($outline->is_container) {

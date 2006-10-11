@@ -14,6 +14,17 @@ sub attr {
     $self->{elem}->getAttribute($attr);
 }
 
+sub attrs {
+    my $self = shift;
+
+    my %attr;
+    for my $attr ($self->{elem}->attributes) {
+        $attr{$attr->name} = $attr->value;
+    }
+
+    \%attr;
+}
+
 sub is_container {
     my $self = shift;
     $self->{elem}->hasChildNodes;
