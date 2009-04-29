@@ -1,5 +1,6 @@
 package XML::OPML::LibXML;
 
+use 5.008_001;
 use strict;
 our $VERSION = '0.04';
 
